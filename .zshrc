@@ -46,11 +46,11 @@ function v() {
 }
 
 sshlink="/tmp/ssh-agent-$USER-screen"
-if [[ -n $SSH_AUTH_SOCK ]]; then
-    if [[ ! -e $sshlink ]] || [[ `readlink $sshlink` != $SSH_AUTH_SOCK ]]; then
-        rm -f $sshlink
-        ln -sf "$SSH_AUTH_SOCK" $sshlink
-    fi
+if [[ -n "$SSH_AUTH_SOCK" ]]; then
+  if [[ ! -e $sshlink ]] || [[ `readlink $sshlink` != $SSH_AUTH_SOCK ]]; then
+    rm -f $sshlink
+    ln -sf "$SSH_AUTH_SOCK" $sshlink
+  fi
 fi
 
 # bind special keys, should match $INPUTRC
