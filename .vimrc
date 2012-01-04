@@ -35,7 +35,7 @@ filetype indent plugin on
 " again, most files will be covered by the previous line.
 set autoindent
 
-set backspace=4
+set backspace=indent,eol,start
 
 " display
 set nolist                    " show/hide tabs and EOL chars
