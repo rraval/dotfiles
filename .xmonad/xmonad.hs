@@ -21,6 +21,7 @@ main = xmonad xfceConfig
 keys' conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm, xK_q), kill)
     , ((modm .|. shiftMask, xK_c), spawn "xmonad --recompile && xmonad --restart")
+    , ((modm, xK_r), spawn "xscreensaver-command --lock")
     -- xinerama movements
     , ((modm, xK_w), nextScreen)
     , ((modm, xK_e), swapNextScreen)

@@ -1,65 +1,90 @@
+" Use Vim settings, rather than Vi settings (much better!).
+" This must be first, because it changes other options as a side effect.
 set nocompatible
 
-set softtabstop=4
-set tabstop=4
-set shiftwidth=4
-set expandtab
-
-" use haskell highlighting on hsc files
-autocmd BufNewFile,BufRead *.hsc set ft=haskell
-autocmd BufNewFile,BufRead *.cabal set ft=cabal
-autocmd BufNewFile,BufRead *.txt set ft=text
-autocmd BufNewFile,BufRead README set ft=text
-
-autocmd FileType python set autoindent | set softtabstop=4
-autocmd FileType make set noexpandtab | set tabstop=8 | set shiftwidth=8
-autocmd FileType text set tw=78
-
-" kill any trailing whitespace on save
-autocmd FileType c,cabal,cpp,haskell,javascript,php,python,readme,text
-  \ autocmd BufWritePre <buffer>
-  \ :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
-
-autocmd FileType php setlocal iskeyword+=$
-set tags=tags;/
-
-" searching
-set incsearch                 " incrimental search
-set hlsearch                  " highlighting when searching
-
-" this should get best indenting for most common filetypes
-filetype indent plugin on
-" note: cindent and smartindent do the wrong thing with e.g. indented lines
-" starting with # in certain files.
-" so i think autoindent is more minimal and good default for all filetypes.
-" again, most files will be covered by the previous line.
-set autoindent
-
+" allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-" display
-set nolist                    " show/hide tabs and EOL chars
-set nonumber                  " show/hide line numbers (nu/nonu)
-set scrolloff=5               " scroll offsett, min lines above/below cursor
-set scrolljump=5              " jump 5 lines when running out of the screen
-set sidescroll=10             " minumum columns to scroll horizontally
-set showcmd                   " show command status
-set showmatch                 " flashes matching paren when one is typed
-set showmode                  " show editing mode in status (-- INSERT --)
-set ruler                     " show cursor position
+set history=50		" keep 50 lines of command line history
+set ruler		" show the cursor position all the time
+set showcmd		" display incomplete commands
+set incsearch		" do incremental searching
 
-" other
-set noerrorbells              " no bells in terminal
-set undolevels=1000           " number of undos stored
-set viminfo='50,"50           " '=marks for x files, "=registers for x files
+" Don't use Ex mode, use Q for formatting
+map Q gq
 
-"
-" things you may be interested in for your .vimrc
-"
+" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
+" so that you can undo CTRL-U after inserting a line break.
+inoremap <C-U> <C-G>u<C-U>
 
-" highlight literal tabs
-match Error '\t'
+" Switch syntax highlighting on, when the terminal has colors
+" Also switch on highlighting the last used search pattern.
+if &t_Co > 2 || has("gui_running")
+  syntax on
+  set hlsearch
+endif
 
-" bind "gb" to "git blame" for visual and normal mode.
-:vmap gb :<C-U>!git blame % -L<C-R>=line("'<") <CR>,<C-R>=line("'>") <CR><CR>
-:nmap gb :!git blame %<CR>
+" Only do this part when compiled with support for autocommands.
+if has("autocmd")
+
+  " Enable file type detection.
+  " Use the default filetype settings, so that mail gets 'tw' set to 72,
+  " 'cindent' is on in C files, etc.
+  " Also load indent files, to automatically do language-dependent indenting.
+  filetype plugin indent on
+
+  " Put these in an autocmd group, so that we can delete them easily.
+  augroup vimrcEx
+  au!
+
+  " For all text files set 'textwidth' to 80 characters.
+  autocmd FileType text setlocal textwidth=80
+
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it when the position is invalid or when inside an event handler
+  " (happens when dropping a file on gvim).
+  " Also don't do it when the mark is in the first line, that is the default
+  " position when opening a file.
+  autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+
+  augroup END
+
+else
+
+  set autoindent		" always set autoindenting on
+
+endif " has("autocmd")
+
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made.
+" Only define it when not defined already.
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+		  \ | wincmd p | diffthis
+endif
+
+set bg=dark
+set ts=4 sts=4 sw=4 expandtab ai nobackup
+set tw=80
+set exrc
+
+set cinoptions=>4,+8,(8,u0
+
+" haskell mode
+au BufEnter *.hs compiler ghc
+let g:haddock_browser = "/usr/bin/chromium"
+let g:haddock_browser_callformat = '%s file://%s >/dev/null &'
+let g:haddock_indexfiledir="~/.vim/"
+
+" spell checking
+map  :w!<CR>:!aspell check %<CR>:e! %<CR>
+
+" latexsuite
+set grepprg=grep\ -nH\ $*
+let g:tex_flavor='latex'
+let g:Tex_DefaultTargetFormat='pdf'
+let g:Tex_FormatDependency_pdf = 'pdf'
+let g:Tex_CompileRule_pdf='pdflatex $*'

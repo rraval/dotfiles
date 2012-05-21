@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/home/rraval/Dropbox/Projects/lepton/lepton/database'
+let g:netrw_dirhist_2='/home/rraval/Dropbox/Projects/lepton/lepton/tasks'
+let g:netrw_dirhist_3='/home/rraval/Dropbox/Documents/uni/Spr11'

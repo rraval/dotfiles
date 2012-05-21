@@ -2,19 +2,7 @@
 
 prompt_adam2_help () {
   cat <<'EOF'
-This prompt is color-scheme-able.  You can invoke it thus:
-
-  prompt adam2 [ 8bit ] [<color1> [<color2> [<color3>] [<color4>]]
-
-where the colors are for the hyphens, current directory, user@host,
-and user input bits respectively.  The default colors are cyan, green,
-cyan, and white.  This theme works best with a dark background.
-
-If you have the `nexus' or `vga' console fonts or similar, you
-can specify the `8bit' option to use 8-bit replacements for the
-7-bit characters.
-
-And you probably thought adam1 was overkill ...
+adam2 prompt with modifications by ronuk@raval.ca
 EOF
 }
 
@@ -22,18 +10,17 @@ prompt_adam2_setup () {
   # Some can't be local
   local prompt_gfx_tlc prompt_gfx_mlc prompt_gfx_blc
 
-  if [[ $1 == '8bit' ]]; then
-    shift
-    prompt_gfx_tlc=$'\xda'
-    prompt_gfx_mlc=$'\xc3'
-    prompt_gfx_blc=$'\xc0'
-    prompt_gfx_hyphen=$'\xc4'
-  else
-    prompt_gfx_tlc='.'
-    prompt_gfx_mlc='|'
-    prompt_gfx_blc='\`'
-    prompt_gfx_hyphen='-'
-  fi
+  # fancy unicode graphics
+  #prompt_gfx_tlc='╭'
+  #prompt_gfx_mlc='├'
+  #prompt_gfx_blc='╰'
+  #prompt_gfx_hyphen='─'
+
+  # text prompt gfx
+  prompt_gfx_tlc='.'
+  prompt_gfx_mlc='|'
+  prompt_gfx_blc='\`'
+  prompt_gfx_hyphen='-'
 
   # Colour scheme
   prompt_adam2_color1=${1:-'cyan'}    # hyphens

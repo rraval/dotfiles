@@ -1,0 +1,31 @@
+\<!DOCTYPE html>
+<html>
+  <head>
+    <title>My #{title}
+
+  <body>
+    <p>
+      This works
+
+    ^{template}
+
+    <p .something #{what} title="foo">
+
+      <a href=@{RouteR}> here
+      \<a href=@{RouteR}>here</a>
+
+      \ <a href="@{RouteR}">here
+
+    <script>
+      var x = foo;
+
+      function doit(_x) {
+        doit(_x);
+      }
+
+      $forall x <- xs
+        alert(#{x})
+
+      doit(x);
+
+    \<span class="x">Some raw Html</span>
