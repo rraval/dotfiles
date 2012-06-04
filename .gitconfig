@@ -14,3 +14,7 @@
     stat = diff --stat
     st = status
     fliptable = "!echo '(╯°□°）╯︵ ┻━┻'; git reset --hard HEAD"
+[mergetool "fugitive"]
+	cmd = vim -f -c \"Gdiff\" \"$MERGED\"
+[merge]
+	tool = fugitive
