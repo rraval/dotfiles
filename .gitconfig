@@ -1,0 +1,16 @@
+[user]
+	name = Ronuk Raval
+	email = ronuk.raval@gmail.com
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[alias]
+    p = pull
+    up = pull --rebase
+    com = commit
+    acom = commit -a
+    d = diff
+    stat = diff --stat
+    st = status
+    fliptable = "!echo '(╯°□°）╯︵ ┻━┻'; git reset --hard HEAD"
