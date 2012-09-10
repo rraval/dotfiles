@@ -28,16 +28,22 @@ autoload -Uz promptinit
 promptinit
 prompt adam_git
 
+# Fast Git Completion:
+# http://talkings.org/post/5236392664/zsh-and-slow-git-completion
+__git_files() { 
+    _wanted files expl 'local files' _files 
+}
+
 export EDITOR='vim'
 export PATH="$HOME/bin:$PATH"
 alias ls='ls --color=auto -F' grep='grep --color=auto'
+alias aurget='aurget --deps --noconfirm'
 
-sshlink="/tmp/ssh-agent-$USER-screen"
-if [[ -n $SSH_AUTH_SOCK ]]; then
-    if [[ ! -e $sshlink ]] || [[ `readlink $sshlink` != $SSH_AUTH_SOCK ]]; then
-        rm -f $sshlink
-        ln -sf "$SSH_AUTH_SOCK" $sshlink
-    fi
-fi
+export TIMEFMT='%U user, %S system, %E elapsed, %P CPU (%X text, %D data, %M max)k
+%I inputs, %O outputs (%F major, %R minor) pagefaults, %W swaps'
+
+# GNOME Keyring SSH keys
+SSH_AUTH_SOCK=`netstat -xl | grep -o "$HOME"'/.cache/keyring-.*/ssh$'`
+[ -z "$SSH_AUTH_SOCK" ] || export SSH_AUTH_SOCK
 
 [[ -s "/home/rraval/.rvm/scripts/rvm" ]] && source "/home/rraval/.rvm/scripts/rvm"

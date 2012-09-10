@@ -7,7 +7,7 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set nobackup
-set tw=80
+set tw=79
 
 set cinoptions=>4,+8,(8,u0
 
@@ -16,8 +16,6 @@ autocmd BufNewFile,BufRead *.hsc set ft=haskell
 autocmd BufNewFile,BufRead *.cabal set ft=cabal
 autocmd BufNewFile,BufRead *.txt set ft=text
 autocmd BufNewFile,BufRead README set ft=text
-
-autocmd FileType python set autoindent | set softtabstop=4
 autocmd FileType make set noexpandtab | set tabstop=8 | set shiftwidth=8
 
 " kill any trailing whitespace on save
@@ -34,6 +32,11 @@ autocmd BufReadPost *
     \ if line("'\"") > 1 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
     \ endif
+
+" Rebuild tags file with Makefile if possible on write
+autocmd BufWritePost *.py
+    \ silent! execute "!make -C `dirname " . findfile("Makefile","./;") .
+    \ "` tags &> /dev/null &" | redraw!
 
 autocmd FileType php setlocal iskeyword+=$
 set tags=tags;/
@@ -76,12 +79,28 @@ let g:haddock_browser = "/usr/bin/chromium"
 let g:haddock_browser_callformat = '%s file://%s >/dev/null &'
 let g:haddock_indexfiledir="~/.vim/"
 
-" spell checking
-map  :w!<CR>:!aspell check %<CR>:e! %<CR>
-
 " latexsuite
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor='latex'
 let g:Tex_DefaultTargetFormat='pdf'
 let g:Tex_FormatDependency_pdf = 'pdf'
 let g:Tex_CompileRule_pdf='pdflatex $*'
+
+" fugitive
+nnoremap <Leader>s :Gstatus<CR>
+nnoremap <Leader>c :Gcommit<CR>
+nnoremap <Leader>d :Gdiff<CR>
+
+" syntastic
+let g:syntastic_mode_map={ 'mode': 'active',
+                         \ 'active_filetypes': ['python', 'coffee'],
+                         \ 'passive_filetypes': [] }
+nnoremap <Leader>e :Errors<CR>
+
+" scratch buffers
+nnoremap <Leader>v :Vscratch<CR>
+nnoremap <Leader>h :Sscratch<CR>
+
+" coffeescript
+nnoremap <Leader>w :CoffeeCompile watch vert<CR>
+nnoremap <Leader>q :CoffeeCompile unwatch<CR>

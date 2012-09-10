@@ -10,6 +10,7 @@
     up = pull --rebase
     com = commit
     acom = commit -a
+    co = checkout
     d = diff
     stat = diff --stat
     st = status

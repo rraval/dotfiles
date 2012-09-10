@@ -2,11 +2,13 @@ import qualified Data.Map as M
 
 import XMonad
 import XMonad.Config.Xfce
+import XMonad.Hooks.ICCCMFocus
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
+import XMonad.Hooks.SetWMName
 import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Actions.CycleWS(nextScreen, swapNextScreen)
- 
+
 main = xmonad xfceConfig
     { modMask = mod4Mask
     , manageHook = manageDocks
@@ -27,4 +29,8 @@ keys' conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, xK_e), swapNextScreen)
     -- restore defaults
     , ((modm, xK_p), spawn "dmenu_run")
+    -- media keys
+    , ((modm, xK_bracketright), spawn "/home/rraval/bin/rdio next")
+    , ((modm, xK_bracketleft), spawn "/home/rraval/bin/rdio prev")
+    , ((modm, xK_space), spawn "/home/rraval/bin/rdio playpause")
     ]
