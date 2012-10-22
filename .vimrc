@@ -10,6 +10,10 @@ set nobackup
 set tw=79
 
 set cinoptions=>4,+8,(8,u0
+call pathogen#infect()
+
+" because Y being yy is stupid
+map Y y$
 
 " use haskell highlighting on hsc files
 autocmd BufNewFile,BufRead *.hsc set ft=haskell
@@ -90,6 +94,7 @@ let g:Tex_CompileRule_pdf='pdflatex $*'
 nnoremap <Leader>s :Gstatus<CR>
 nnoremap <Leader>c :Gcommit<CR>
 nnoremap <Leader>d :Gdiff<CR>
+nnoremap <Leader>g :Ggrep<Space>
 
 " syntastic
 let g:syntastic_mode_map={ 'mode': 'active',

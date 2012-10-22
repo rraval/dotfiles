@@ -32,5 +32,5 @@ keys' conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- media keys
     , ((modm, xK_bracketright), spawn "/home/rraval/bin/rdio next")
     , ((modm, xK_bracketleft), spawn "/home/rraval/bin/rdio prev")
-    , ((modm, xK_space), spawn "/home/rraval/bin/rdio playpause")
+    , ((modm, xK_backslash), spawn "/home/rraval/bin/rdio playpause")
     ]

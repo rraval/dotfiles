@@ -1,6 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/home/rraval/quickasyst/phonegap/coffee'
-let g:netrw_dirhist_2='/home/rraval/quickasyst/phonegap/client'
-let g:netrw_dirhist_3='/home/rraval/quickasyst/phonegap/build'
-let g:netrw_dirhist_4='/home/rraval/android-sdks/docs'
