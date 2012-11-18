@@ -46,8 +46,6 @@ export NODE_PATH='/usr/lib/node_modules'
 
 source "$HOME"/.zsh_aws
 
-# GNOME Keyring SSH keys
-SSH_AUTH_SOCK=`netstat -xl | grep -o "$HOME"'/.cache/keyring-.*/ssh$'`
+# GNOME Keyring
+SSH_AUTH_SOCK=`netstat -xl | grep -o '/run/user/1000/keyring-.*/ssh$'`
 [ -z "$SSH_AUTH_SOCK" ] || export SSH_AUTH_SOCK
-
-[[ -s "/home/rraval/.rvm/scripts/rvm" ]] && source "/home/rraval/.rvm/scripts/rvm"

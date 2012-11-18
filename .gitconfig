@@ -5,6 +5,8 @@
 	diff = auto
 	status = auto
 	branch = auto
+[core]
+    whitespace = fix
 [alias]
     p = pull
     up = pull --rebase
@@ -19,3 +21,5 @@
 	cmd = vim -f -c \"Gdiff\" \"$MERGED\"
 [merge]
 	tool = fugitive
+[push]
+	default = simple
