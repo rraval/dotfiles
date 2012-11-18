@@ -49,6 +49,10 @@ set tags=tags;/
 set incsearch                 " incrimental search
 set hlsearch                  " highlighting when searching
 
+" netrw can go die in a fire
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
+
 " this should get best indenting for most common filetypes
 filetype indent plugin on
 " note: cindent and smartindent do the wrong thing with e.g. indented lines
