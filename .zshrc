@@ -34,8 +34,20 @@ __git_files() {
     _wanted files expl 'local files' _files 
 }
 
+# Completion fixes from:
+# https://github.com/fschulze/zsh-settings/blob/746924fc589112a33b2c5042701a86af23e78617/completion.zsh
+#
+# colorise files
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+
+# ignore some files during completion
+zstyle ':completion:*:(all-|)files' ignored-patterns "(*.pyc|*~)"
+# but not for these programs
+zstyle ':completion:*:ls:*:(all-|)files' ignored-patterns
+zstyle ':completion:*:rm:*:(all-|)files' ignored-patterns
+
 export EDITOR='vim'
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/bin:/opt/java/bin:$PATH:/usr/share/git/git-jump:/usr/share/git/subtree"
 alias ls='ls --color=auto -F' grep='grep --color=auto'
 alias aurget='aurget --deps --noconfirm'
 alias logcat='adb logcat | python2 ~/bin/colorlogcat.py'
@@ -43,6 +55,7 @@ alias logcat='adb logcat | python2 ~/bin/colorlogcat.py'
 export TIMEFMT='%U user, %S system, %E elapsed, %P CPU (%X text, %D data, %M max)k
 %I inputs, %O outputs (%F major, %R minor) pagefaults, %W swaps'
 export NODE_PATH='/usr/lib/node_modules'
+export PYTHONDONTWRITEBYTECODE=1
 
 source "$HOME"/.zsh_aws
 

@@ -53,14 +53,18 @@ prompt_adam2_setup () {
 
 prompt_adam2_precmd () {
   setopt noxtrace localoptions extendedglob
-  local prompt_line_1 prompt_git_branch
+  local prompt_line_1 prompt_git_branch prompt_git_build
 
   # git branch
-  prompt_git_branch=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
+  prompt_git_branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
   if [[ -z "$prompt_git_branch" ]]; then
     prompt_line_1a="$prompt_gfx_tbox$prompt_l_paren%{$fg_bold[$prompt_adam2_color2]%}%~$prompt_r_paren%{$fg_no_bold[$prompt_adam2_color1]%}%{$fg_no_bold[$prompt_adam2_color1]%}"
   else
+    prompt_git_build=$(git config build.type)
     prompt_git_branch="%{$fg_no_bold[$prompt_adam2_color5]%}$prompt_git_branch%{$fg_no_bold[$prompt_adam2_color1]%}"
+    if [[ -n "$prompt_git_build" ]]; then
+        prompt_git_branch+=":${prompt_git_build}"
+    fi
     prompt_line_1a="$prompt_gfx_tbox$prompt_l_paren%{$fg_bold[$prompt_adam2_color2]%}%~$prompt_r_paren%{$fg_no_bold[$prompt_adam2_color1]%}$prompt_gfx_hyphen$prompt_l_paren$prompt_git_branch$prompt_r_paren%{$fg_no_bold[$prompt_adam2_color1]%}"
   fi
 
