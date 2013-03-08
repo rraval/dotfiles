@@ -62,3 +62,13 @@ source "$HOME"/.zsh_aws
 # GNOME Keyring
 SSH_AUTH_SOCK=`netstat -xl | grep -o '/run/user/1000/keyring-.*/ssh$'`
 [ -z "$SSH_AUTH_SOCK" ] || export SSH_AUTH_SOCK
+
+# Antigen
+source ~/.zsh/antigen/antigen.zsh
+
+antigen-bundle git
+antigen-bundle pip
+antigen-bundle command-not-found
+antigen-bundle zsh-users/zsh-syntax-highlighting
+
+antigen-apply
