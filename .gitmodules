@@ -7,3 +7,6 @@
 [submodule ".vim/bundle/MatchTag"]
 	path = .vim/bundle/MatchTag
 	url = git://github.com/gregsexton/MatchTag.git
+[submodule ".vim/bundle/supertab"]
+	path = .vim/bundle/supertab
+	url = git://github.com/ervandew/supertab.git
