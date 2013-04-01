@@ -7,7 +7,7 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set nobackup
-set tw=79
+set tw=0
 
 set cinoptions=>4,+8,(8,u0
 call pathogen#infect()
