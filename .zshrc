@@ -51,7 +51,7 @@ export PATH="$HOME/bin:/opt/java/bin:$PATH:/usr/share/git/git-jump:/usr/share/gi
 alias ls='ls --color=auto -F' grep='grep --color=auto'
 alias aurget='aurget --deps --noconfirm'
 alias logcat='adb logcat | python2 ~/bin/colorlogcat.py'
-alias vim='gvim --remote'
+alias vim='gvim --remote-silent'
 
 export TIMEFMT='%U user, %S system, %E elapsed, %P CPU (%X text, %D data, %M max)k
 %I inputs, %O outputs (%F major, %R minor) pagefaults, %W swaps'
