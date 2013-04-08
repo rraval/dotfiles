@@ -8,7 +8,7 @@
 [core]
     whitespace = fix
 [alias]
-    acom = commit -a
+    ap = add -p
     b = branch
     cached = diff --cached
     co = checkout
@@ -16,8 +16,7 @@
     d = diff
     fliptable = "!echo '(╯°□°）╯︵ ┻━┻'; git reset --hard HEAD"
     j = jump
-    p = pull
-    st = status
+    st = status -sb
     stat = diff --stat
     subtree = subtree.sh
     up = pull --rebase
