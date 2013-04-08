@@ -38,9 +38,9 @@ autocmd BufReadPost *
     \ endif
 
 " Rebuild tags file with Makefile if possible on write
-autocmd BufWritePost *.py
-    \ silent! execute "!make -C `dirname " . findfile("Makefile","./;") .
-    \ "` tags &> /dev/null &" | redraw!
+"autocmd BufWritePost *.py
+"    \ silent! execute "!make -C `dirname " . findfile("Makefile","./;") .
+"    \ "` tags &> /dev/null &" | redraw!
 
 autocmd FileType php setlocal iskeyword+=$
 set tags=tags;/
