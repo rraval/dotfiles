@@ -51,7 +51,18 @@ export PATH="$HOME/bin:/opt/java/bin:$PATH:/usr/share/git/git-jump:/usr/share/gi
 alias ls='ls --color=auto -F' grep='grep --color=auto'
 alias aurget='aurget --deps --noconfirm'
 alias logcat='adb logcat | python2 ~/bin/colorlogcat.py'
-alias vim='gvim --remote-silent'
+
+function gvim_server() {
+    gvimid=`xdotool search --limit 1 --all --class --name Gvim`
+
+    if [[ -n "$gvimid" ]]; then
+        for file in "$@"; do
+            gvim --remote-send ":split `readlink -f $file`<CR>"
+        done
+        xdotool windowactivate "$gvimid"
+    fi
+}
+alias vim=gvim_server
 
 export TIMEFMT='%U user, %S system, %E elapsed, %P CPU (%X text, %D data, %M max)k
 %I inputs, %O outputs (%F major, %R minor) pagefaults, %W swaps'

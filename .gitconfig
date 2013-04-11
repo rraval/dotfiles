@@ -8,18 +8,29 @@
 [core]
     whitespace = fix
 [alias]
+    # working -> index
     ap = add -p
-    b = branch
-    cached = diff --cached
-    co = checkout
     com = commit
-    d = diff
-    fliptable = "!echo '(╯°□°）╯︵ ┻━┻'; git reset --hard HEAD"
-    j = jump
+
+    # information
     st = status -sb
+    d = diff
+    cached = diff --cached
     stat = diff --stat
-    subtree = subtree.sh
+
+    # index -> working
+    b = branch
+    co = checkout
+    fliptable = "!echo '(╯°□°）╯︵ ┻━┻'; git reset --hard HEAD"
+
+    # dealing with others
     up = pull --rebase
+    cont = rebase --continue
+    ff = merge --ff-only
+
+    # miscellaneous
+    j = jump
+    subtree = subtree.sh
 [mergetool "fugitive"]
 	cmd = vim -f -c \"Gdiff\" \"$MERGED\"
 [merge]
