@@ -11,6 +11,7 @@
     # working -> index
     ap = add -p
     com = commit
+    mcom = merge --no-ff
 
     # information
     st = status -sb
