@@ -1,9 +1,6 @@
 [submodule ".zsh/antigen"]
 	path = .zsh/antigen
 	url = https://github.com/zsh-users/antigen.git
-[submodule ".vim/bundle/jedi-vim"]
-	path = .vim/bundle/jedi-vim
-	url = git://github.com/davidhalter/jedi-vim.git
 [submodule ".vim/bundle/MatchTag"]
 	path = .vim/bundle/MatchTag
 	url = git://github.com/gregsexton/MatchTag.git
