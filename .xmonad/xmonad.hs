@@ -9,6 +9,7 @@ import XMonad.Hooks.ICCCMFocus
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
+import XMonad.Hooks.FadeInactive
 import XMonad.Layout.NoBorders
 import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Actions.CycleWS(nextScreen, swapNextScreen)
@@ -23,7 +24,10 @@ main = xmonad xfceConfig
             ]
         <+> manageHook defaultConfig
     , keys = \c -> keys' c `M.union` keys xfceConfig c
-    , layoutHook = smartBorders $ layoutHook xfceConfig
+    , layoutHook = noBorders $ layoutHook xfceConfig
+    , logHook = do
+        logHook xfceConfig
+        fadeInactiveCurrentWSLogHook 0.6
     }
 
 keys' conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
