@@ -25,7 +25,7 @@
     fliptable = "!echo '(╯°□°）╯︵ ┻━┻'; git reset --hard HEAD"
 
     # dealing with others
-    up = pull --rebase
+    up = "!git fetch && git rebase -p"
     cont = rebase --continue
     ff = merge --ff-only
 
