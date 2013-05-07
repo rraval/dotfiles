@@ -103,7 +103,7 @@ nnoremap <Leader>g :Ggrep<Space>
 " syntastic
 let g:syntastic_mode_map={ 'mode': 'active',
                          \ 'active_filetypes': ['python', 'coffee'],
-                         \ 'passive_filetypes': [] }
+                         \ 'passive_filetypes': ['latex'] }
 nnoremap <Leader>e :Errors<CR>
 
 " scratch buffers
