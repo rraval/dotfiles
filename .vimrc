@@ -94,12 +94,6 @@ let g:Tex_DefaultTargetFormat='pdf'
 let g:Tex_FormatDependency_pdf = 'pdf'
 let g:Tex_CompileRule_pdf='pdflatex $*'
 
-" fugitive
-nnoremap <Leader>s :Gstatus<CR>
-nnoremap <Leader>c :Gcommit<CR>
-nnoremap <Leader>d :Gdiff<CR>
-nnoremap <Leader>g :Ggrep<Space>
-
 " syntastic
 let g:syntastic_mode_map={ 'mode': 'active',
                          \ 'active_filetypes': ['python', 'coffee'],

@@ -32,8 +32,6 @@
     # miscellaneous
     j = jump
     subtree = subtree.sh
-[mergetool "fugitive"]
-	cmd = vim -f -c \"Gdiff\" \"$MERGED\"
 [merge]
 	tool = vimdiff
 	conflictstyle = diff3
