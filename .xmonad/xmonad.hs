@@ -26,6 +26,7 @@ main = do
     getWellKnownName dbus
     xmonad xfceConfig
         { modMask = mod4Mask
+        , startupHook = startupHook xfceConfig >> setWMName "LG3D"
         , manageHook = manageDocks
             <+> composeAll
                 [ isFullscreen --> doFullFloat
