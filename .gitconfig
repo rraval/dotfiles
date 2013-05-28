@@ -33,9 +33,12 @@
     j = jump
     subtree = subtree.sh
 [merge]
-	tool = vimdiff
+	tool = splice
 	conflictstyle = diff3
 [push]
 	default = simple
 [mergetool]
 	keepBackup = false
+[mergetool "splice"]
+    cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
+    trustExitCode = true
