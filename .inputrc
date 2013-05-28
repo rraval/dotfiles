@@ -1,0 +1,4 @@
+"\C-b": backward-word
+"\C-f": forward-word
+"\e[A": redraw-current-line
+"\e[B": redraw-current-line

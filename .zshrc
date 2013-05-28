@@ -69,6 +69,14 @@ export TIMEFMT='%U user, %S system, %E elapsed, %P CPU (%X text, %D data, %M max
 export NODE_PATH='/usr/lib/node_modules'
 export PYTHONDONTWRITEBYTECODE=1
 
+# key bindings
+export INPUTRC="$HOME"/.inputrc
+bindkey "\C-b" backward-word
+bindkey "\C-f" forward-word
+bindkey "\e[A" undefined-key # unbind up
+bindkey "\e[B" undefined-key # unbind down
+export WORDCHARS=''
+
 source "$HOME"/.zsh_aws
 
 # GNOME Keyring
