@@ -35,6 +35,9 @@
 [mergetool "fugitive"]
 	cmd = vim -f -c \"Gdiff\" \"$MERGED\"
 [merge]
-	tool = fugitive
+	tool = vimdiff
+	conflictstyle = diff3
 [push]
 	default = simple
+[mergetool]
+	keepBackup = false
