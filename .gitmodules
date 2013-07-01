@@ -19,3 +19,6 @@
 [submodule ".vim/bundle/splice"]
 	path = .vim/bundle/splice
 	url = git://github.com/sjl/splice.vim.git
+[submodule ".vim/bundle/syntastic"]
+	path = .vim/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
