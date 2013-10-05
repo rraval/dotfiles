@@ -14,6 +14,7 @@ import XMonad.Hooks.ICCCMFocus
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
+import XMonad.Layout.Fullscreen
 import XMonad.Layout.NoBorders
 import XMonad.Util.EZConfig(additionalKeys)
 
@@ -35,10 +36,10 @@ main = do
                 ]
             <+> manageHook defaultConfig
         , keys = \c -> keys' c `M.union` keys xfceConfig c
-        , layoutHook = noBorders $ layoutHook xfceConfig
+        , layoutHook = (noBorders $ layoutHook xfceConfig) ||| (noBorders $ fullscreenFull Full)
         , logHook = do
             logHook xfceConfig
-            fadeInactiveLogHook 0.6
+            fadeInactiveLogHook 0.8
             dynamicLogWithPP (prettyPrinter dbus)
         }
 

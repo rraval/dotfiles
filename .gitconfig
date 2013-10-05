@@ -32,6 +32,7 @@
     # miscellaneous
     j = jump
     subtree = subtree.sh
+    graph = log --graph --oneline --all --decorate
 [merge]
 	tool = splice
 	conflictstyle = diff3

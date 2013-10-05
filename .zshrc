@@ -47,7 +47,7 @@ zstyle ':completion:*:ls:*:(all-|)files' ignored-patterns
 zstyle ':completion:*:rm:*:(all-|)files' ignored-patterns
 
 export EDITOR='vim'
-export PATH="$HOME/bin:/opt/java/bin:$PATH:/usr/share/git/git-jump:/usr/share/git/subtree"
+export PATH="$HOME/bin:$HOME/.gem/ruby/2.0.0/bin:/opt/java/bin:$PATH:/usr/share/git/git-jump:/usr/share/git/subtree"
 alias ls='ls --color=auto -F' grep='grep --color=auto'
 alias aurget='aurget --deps --noconfirm'
 alias logcat='adb logcat | python2 ~/bin/colorlogcat.py'

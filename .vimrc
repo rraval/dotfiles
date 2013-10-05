@@ -8,6 +8,7 @@ set shiftwidth=4
 set expandtab
 set nobackup
 set tw=0
+set shell=/bin/bash
 
 set cinoptions=>4,+8,(8,u0
 call pathogen#infect()
@@ -107,6 +108,21 @@ nnoremap <Leader>e :Errors<CR>
 nnoremap <Leader>v :Vscratch<CR>
 nnoremap <Leader>h :Sscratch<CR>
 
-" coffeescript
-nnoremap <Leader>w :CoffeeCompile watch vert<CR>
-nnoremap <Leader>q :CoffeeCompile unwatch<CR>
+" command-t encircle
+nnoremap <Leader>q :CommandT mobile<CR>
+nnoremap <Leader>w :CommandT web<CR>
+nnoremap <Leader>e :CommandT hoard<CR>
+nnoremap <Leader>r :CommandT ratchet<CR>
+
+" git grep
+func GitGrep(...)
+    let save = &grepprg
+    set grepprg=git\ grep\ -n\ $*
+    let s = 'grep'
+    for i in a:000
+        let s = s . ' ' . i
+    endfor
+    exe s
+    let &grepprg = save
+endfun
+command -nargs=? G call GitGrep(<f-args>)
