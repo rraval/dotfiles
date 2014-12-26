@@ -7,6 +7,7 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set nobackup
+set nowrap
 set tw=0
 set shell=/bin/bash
 
@@ -99,6 +100,7 @@ let g:Tex_CompileRule_pdf='pdflatex $*'
 let g:splice_prefix = ","
 
 " syntastic
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 let g:syntastic_mode_map={ 'mode': 'active',
                          \ 'active_filetypes': ['python', 'coffee'],
                          \ 'passive_filetypes': ['latex'] }
@@ -108,11 +110,8 @@ nnoremap <Leader>e :Errors<CR>
 nnoremap <Leader>v :Vscratch<CR>
 nnoremap <Leader>h :Sscratch<CR>
 
-" command-t encircle
-nnoremap <Leader>q :CommandT mobile<CR>
-nnoremap <Leader>w :CommandT web<CR>
-nnoremap <Leader>e :CommandT hoard<CR>
-nnoremap <Leader>r :CommandT ratchet<CR>
+" command t
+let g:CommandTFileScanner = 'git'
 
 " git grep
 func GitGrep(...)

@@ -7,6 +7,7 @@ import XMonad
 import qualified XMonad.StackSet as W
 
 import XMonad.Actions.CycleWS(nextScreen, swapNextScreen)
+import XMonad.Actions.Navigation2D
 import XMonad.Config.Xfce
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.FadeInactive
@@ -39,7 +40,7 @@ main = do
         , layoutHook = (noBorders $ layoutHook xfceConfig) ||| (noBorders $ fullscreenFull Full)
         , logHook = do
             logHook xfceConfig
-            fadeInactiveLogHook 0.8
+            fadeInactiveLogHook 0.75
             dynamicLogWithPP (prettyPrinter dbus)
         }
 
@@ -51,8 +52,16 @@ keys' conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- xinerama movements
     , ((modm, xK_w), nextScreen)
     , ((modm, xK_e), swapNextScreen)
+    -- 2D navigation
+    , ((modm, xK_h), windowGo L True)
+    , ((modm, xK_j), windowGo D True)
+    , ((modm, xK_k), windowGo U True)
+    , ((modm, xK_l), windowGo R True)
+    -- shrink & expand master pane
+    , ((modm, xK_m), sendMessage Expand)
+    , ((modm, xK_n), sendMessage Shrink)
     -- restore defaults
-    , ((modm, xK_p), spawn "dmenu_run")
+    , ((modm, xK_p), spawn "dmenu_run -z -dim 0.5")
     -- media keys
     , ((modm, xK_bracketright), spawn "/home/rraval/bin/rdio next")
     , ((modm, xK_bracketleft), spawn "/home/rraval/bin/rdio prev")
