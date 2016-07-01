@@ -110,6 +110,10 @@ nnoremap <Leader>e :Errors<CR>
 nnoremap <Leader>v :Vscratch<CR>
 nnoremap <Leader>h :Sscratch<CR>
 
+" quickfix
+nnoremap <C-J> :cn<CR>
+nnoremap <C-K> :cp<CR>
+
 " command t
 let g:CommandTFileScanner = 'git'
 

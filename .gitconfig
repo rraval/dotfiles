@@ -6,23 +6,32 @@
 	status = auto
 	branch = auto
 [core]
+    whitespace = trailing-space,space-before-tab
+[apply]
     whitespace = fix
 [alias]
     # working -> index
     ap = add -p
     com = commit
     mcom = merge --no-ff
+    acom = commit --amend
+    fixup = "!f() { git commit --fixup=$1 && git rebase -i $1^ --autosquash; }; f"
 
     # information
     st = status -sb
     d = diff
     cached = diff --cached
     stat = diff --stat
+    merged = branch --merged
+    unmerged = branch --no-merged
+    graph = log --graph --oneline --all --decorate
 
     # index -> working
     b = branch
+    br = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:green)%(refname:short)%(color:reset): %(color:red)%(objectname:short)%(color:reset) %(contents:subject) %(color:yellow)(%(authorname) %(committerdate:relative))%(color:reset)'
     co = checkout
     fliptable = "!echo '(╯°□°）╯︵ ┻━┻'; git reset --hard HEAD"
+    flipup = "!echo '┬─┬ ノ( ゜-゜ノ)'; git reset --hard '@{u}'"
 
     # dealing with others
     up = "!git fetch && git rebase -p"
@@ -32,7 +41,6 @@
     # miscellaneous
     j = jump
     subtree = subtree.sh
-    graph = log --graph --oneline --all --decorate
 [merge]
 	tool = splice
 	conflictstyle = diff3

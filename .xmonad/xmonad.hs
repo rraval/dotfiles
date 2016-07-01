@@ -33,14 +33,14 @@ main = do
             <+> composeAll
                 [ isFullscreen --> doFullFloat
                 , className =? "Xfce4-notifyd" --> doIgnore
+                , className =? "Zeal" --> doFullFloat
                 , isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_MENU" --> doFloat
                 ]
             <+> manageHook defaultConfig
         , keys = \c -> keys' c `M.union` keys xfceConfig c
-        , layoutHook = (noBorders $ layoutHook xfceConfig) ||| (noBorders $ fullscreenFull Full)
+        , layoutHook = (smartBorders $ layoutHook xfceConfig) ||| (noBorders $ fullscreenFull Full)
         , logHook = do
             logHook xfceConfig
-            fadeInactiveLogHook 0.75
             dynamicLogWithPP (prettyPrinter dbus)
         }
 
@@ -61,11 +61,13 @@ keys' conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, xK_m), sendMessage Expand)
     , ((modm, xK_n), sendMessage Shrink)
     -- restore defaults
-    , ((modm, xK_p), spawn "dmenu_run -z -dim 0.5")
+    , ((modm, xK_p), spawn "dmenu_run")
     -- media keys
-    , ((modm, xK_bracketright), spawn "/home/rraval/bin/rdio next")
-    , ((modm, xK_bracketleft), spawn "/home/rraval/bin/rdio prev")
-    , ((modm, xK_backslash), spawn "/home/rraval/bin/rdio playpause")
+    , ((modm, xK_bracketright), spawn "nuvolaplayer3ctl action next-song")
+    , ((modm, xK_bracketleft), spawn "nuvolaplayer3ctl action prev-song")
+    , ((modm, xK_backslash), spawn "nuvolaplayer3ctl action toggle-play")
+    , ((modm, xK_equal), spawn "nuvolaplayer3ctl action thumbs-up")
+    , ((modm, xK_minus), spawn "nuvolaplayer3ctl action thumbs-down")
     ]
 
 prettyPrinter :: D.Client -> PP
