@@ -2,23 +2,23 @@
 	path = .zsh/antigen
 	url = https://github.com/zsh-users/antigen.git
 [submodule ".vim/bundle/MatchTag"]
-	path = .vim/bundle/MatchTag
+	path = vim/.vim/bundle/MatchTag
 	url = git://github.com/gregsexton/MatchTag.git
 [submodule ".vim/bundle/vim-less"]
-	path = .vim/bundle/vim-less
+	path = vim/.vim/bundle/vim-less
 	url = git://github.com/groenewege/vim-less.git
 [submodule ".vim/bundle/command-t"]
-	path = .vim/bundle/command-t
+	path = vim/.vim/bundle/command-t
 	url = git://git.wincent.com/command-t.git
 [submodule ".vim/bundle/colorschemes"]
-	path = .vim/bundle/colorschemes
+	path = vim/.vim/bundle/colorschemes
 	url = git@github.com:flazz/vim-colorschemes.git
 [submodule ".vim/bundle/vim-coffee-script"]
-	path = .vim/bundle/vim-coffee-script
+	path = vim/.vim/bundle/vim-coffee-script
 	url = git://github.com/CITguy/vim-coffee-script.git
 [submodule ".vim/bundle/splice"]
-	path = .vim/bundle/splice
+	path = vim/.vim/bundle/splice
 	url = git://github.com/sjl/splice.vim.git
 [submodule ".vim/bundle/syntastic"]
-	path = .vim/bundle/syntastic
+	path = vim/.vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
