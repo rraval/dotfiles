@@ -39,6 +39,8 @@
     ff = merge --ff-only
 
     # miscellaneous
+    desc = "!git config branch.$(git symbolic-ref --short HEAD).description"
+    edesc = branch --edit-description
     j = jump
     subtree = subtree.sh
 [merge]
