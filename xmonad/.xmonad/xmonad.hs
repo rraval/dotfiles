@@ -63,11 +63,9 @@ keys' conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- restore defaults
     , ((modm, xK_p), spawn "dmenu_run")
     -- media keys
-    , ((modm, xK_bracketright), spawn "nuvolaplayer3ctl action next-song")
-    , ((modm, xK_bracketleft), spawn "nuvolaplayer3ctl action prev-song")
-    , ((modm, xK_backslash), spawn "nuvolaplayer3ctl action toggle-play")
-    , ((modm, xK_equal), spawn "nuvolaplayer3ctl action thumbs-up")
-    , ((modm, xK_minus), spawn "nuvolaplayer3ctl action thumbs-down")
+    , ((modm, xK_bracketright), spawn "dbus-send --session --type=method_call --dest=org.mpris.MediaPlayer2.google-play-music-desktop-player /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next")
+    , ((modm, xK_bracketleft), spawn "dbus-send --session --type=method_call --dest=org.mpris.MediaPlayer2.google-play-music-desktop-player /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous")
+    , ((modm, xK_backslash), spawn "dbus-send --session --type=method_call --dest=org.mpris.MediaPlayer2.google-play-music-desktop-player /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause")
     ]
 
 prettyPrinter :: D.Client -> PP
