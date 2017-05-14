@@ -1,0 +1,25 @@
+OPTIONS=DECgraphics
+OPTIONS=autopickup
+OPTIONS=boulder:0
+OPTIONS=color
+OPTIONS=fullscreen
+OPTIONS=hilite_pet
+OPTIONS=hilite_pile
+OPTIONS=lit_corridor
+OPTIONS=paranoid_confirmation
+OPTIONS=perm_invent
+OPTIONS=pickup_types:$
+OPTIONS=pushweapon
+OPTIONS=scroll_amount:5
+OPTIONS=scroll_margin:5
+OPTIONS=standout
+OPTIONS=time
+OPTIONS=!implicit_uncursed
+OPTIONS=menucolors
+OPTIONS=msghistory:100
+OPTIONS=!mouse_support
+OPTIONS=use_inverse
+OPTIONS=large_font
+
+MENUCOLOR="blessed"=cyan&bold
+MENUCOLOR=" cursed"=orange&bold

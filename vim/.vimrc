@@ -7,6 +7,7 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set nobackup
+set backupcopy=yes
 set nowrap
 set tw=0
 set shell=/bin/bash
@@ -39,16 +40,11 @@ autocmd BufReadPost *
     \   exe "normal! g`\"" |
     \ endif
 
-" Rebuild tags file with Makefile if possible on write
-"autocmd BufWritePost *.py
-"    \ silent! execute "!make -C `dirname " . findfile("Makefile","./;") .
-"    \ "` tags &> /dev/null &" | redraw!
-
 autocmd FileType php setlocal iskeyword+=$
 set tags=tags;/
 
 " searching
-set incsearch                 " incrimental search
+set incsearch                 " incremental search
 set hlsearch                  " highlighting when searching
 
 " netrw can go die in a fire
@@ -100,6 +96,8 @@ let g:Tex_CompileRule_pdf='pdflatex $*'
 let g:splice_prefix = ","
 
 " syntastic
+let g:loaded_syntastic_jsonnet_jsonnet_checker = 1
+let g:jsonnet_fmt_on_save = 0
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 let g:syntastic_mode_map={ 'mode': 'active',
                          \ 'active_filetypes': ['python', 'coffee'],
@@ -116,16 +114,3 @@ nnoremap <C-K> :cp<CR>
 
 " command t
 let g:CommandTFileScanner = 'git'
-
-" git grep
-func GitGrep(...)
-    let save = &grepprg
-    set grepprg=git\ grep\ -n\ $*
-    let s = 'grep'
-    for i in a:000
-        let s = s . ' ' . i
-    endfor
-    exe s
-    let &grepprg = save
-endfun
-command -nargs=? G call GitGrep(<f-args>)

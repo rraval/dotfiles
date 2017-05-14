@@ -22,3 +22,12 @@
 [submodule ".vim/bundle/syntastic"]
 	path = vim/.vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
+[submodule "vim/.vim/bundle/vim-jsonnet"]
+	path = vim/.vim/bundle/vim-jsonnet
+	url = https://github.com/google/vim-jsonnet
+[submodule "vim/.vim/bundle/typescript-vim"]
+	path = vim/.vim/bundle/typescript-vim
+	url = https://github.com/leafgarland/typescript-vim
+[submodule "vim/.vim/bundle/yats"]
+	path = vim/.vim/bundle/yats
+	url = https://github.com/HerringtonDarkholme/yats.vim

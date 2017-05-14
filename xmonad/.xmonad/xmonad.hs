@@ -33,7 +33,8 @@ main = do
             <+> composeAll
                 [ isFullscreen --> doFullFloat
                 , className =? "Xfce4-notifyd" --> doIgnore
-                , className =? "Zeal" --> doFullFloat
+                , title =? "Whisker Menu" --> doFloat
+                , className =? "Zeal" --> doRectFloat(W.RationalRect 0.1 0.1 0.8 0.8)
                 , isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_MENU" --> doFloat
                 ]
             <+> manageHook defaultConfig
@@ -61,7 +62,8 @@ keys' conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, xK_m), sendMessage Expand)
     , ((modm, xK_n), sendMessage Shrink)
     -- restore defaults
-    , ((modm, xK_p), spawn "dmenu_run")
+    , ((modm, xK_p), spawn "xfce4-popup-whiskermenu")
+    , ((modm, xK_o), spawn "zeal")
     -- media keys
     , ((modm, xK_bracketright), spawn "dbus-send --session --type=method_call --dest=org.mpris.MediaPlayer2.google-play-music-desktop-player /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next")
     , ((modm, xK_bracketleft), spawn "dbus-send --session --type=method_call --dest=org.mpris.MediaPlayer2.google-play-music-desktop-player /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous")
