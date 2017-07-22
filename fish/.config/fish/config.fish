@@ -1,5 +1,5 @@
 set -x EDITOR vim
-set -x PATH $HOME/.local/bin $PATH
+set -x PATH $HOME/.local/bin $HOME/.local/android-sdk/platform-tools $PATH
 set -x GCC_COLORS 'error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 set -x TIMEFMT '\n\n%U user, %S system, %E elapsed, %P CPU (%X text, %D data, %M max)k\n%I inputs, %O outputs (%F major, %R minor) pagefaults, %W swaps'

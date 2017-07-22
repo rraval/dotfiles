@@ -25,6 +25,8 @@
     merged = branch --merged
     unmerged = branch --no-merged
     graph = log --graph --oneline --all --decorate
+    g = "!git log --branches --graph --decorate --oneline --not $(git show-ref --heads --hash | xargs git merge-base)"
+    xxx = grep 'FIXME XXX'
 
     # index -> working
     b = branch

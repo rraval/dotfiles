@@ -26,9 +26,7 @@ autocmd BufNewFile,BufRead README set ft=text
 autocmd FileType make set noexpandtab | set tabstop=8 | set shiftwidth=8
 
 " kill any trailing whitespace on save
-autocmd FileType c,cabal,cpp,haskell,javascript,php,python,readme,text
-    \ autocmd BufWritePre <buffer>
-    \ :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+autocmd BufWritePre * %s/\s\+$//e
 
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
