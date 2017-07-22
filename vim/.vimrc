@@ -18,13 +18,6 @@ call pathogen#infect()
 " because Y being yy is stupid
 map Y y$
 
-" use haskell highlighting on hsc files
-autocmd BufNewFile,BufRead *.hsc set ft=haskell
-autocmd BufNewFile,BufRead *.cabal set ft=cabal
-autocmd BufNewFile,BufRead *.txt set ft=text
-autocmd BufNewFile,BufRead README set ft=text
-autocmd FileType make set noexpandtab | set tabstop=8 | set shiftwidth=8
-
 " kill any trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 
@@ -37,9 +30,6 @@ autocmd BufReadPost *
     \ if line("'\"") > 1 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
     \ endif
-
-autocmd FileType php setlocal iskeyword+=$
-set tags=tags;/
 
 " searching
 set incsearch                 " incremental search
@@ -76,19 +66,6 @@ set noerrorbells              " no bells in terminal
 set undolevels=1000           " number of undos stored
 set history=50		          " keep 50 lines of command line history
 set viminfo='50,"50           " '=marks for x files, "=registers for x files
-
-" haskell mode
-au BufEnter *.hs compiler ghc
-let g:haddock_browser = "/usr/bin/chromium"
-let g:haddock_browser_callformat = '%s file://%s >/dev/null &'
-let g:haddock_indexfiledir="~/.vim/"
-
-" latexsuite
-set grepprg=grep\ -nH\ $*
-let g:tex_flavor='latex'
-let g:Tex_DefaultTargetFormat='pdf'
-let g:Tex_FormatDependency_pdf = 'pdf'
-let g:Tex_CompileRule_pdf='pdflatex $*'
 
 " splice
 let g:splice_prefix = ","
