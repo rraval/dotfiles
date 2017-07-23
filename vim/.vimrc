@@ -79,9 +79,8 @@ let g:syntastic_mode_map={ 'mode': 'active',
                          \ 'passive_filetypes': ['latex'] }
 nnoremap <Leader>e :Errors<CR>
 
-" scratch buffers
-nnoremap <Leader>v :Vscratch<CR>
-nnoremap <Leader>h :Sscratch<CR>
+" camel case motion
+call camelcasemotion#CreateMotionMappings(',')
 
 " quickfix
 nnoremap <C-J> :cn<CR>
