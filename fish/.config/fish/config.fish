@@ -1,5 +1,9 @@
-set -x EDITOR vim
-set -x PATH $HOME/.local/bin $HOME/.local/android-sdk/platform-tools $PATH
+if [ -n "$NVIM_LISTEN_ADDRESS" ]
+    set -x EDITOR nvr -cc split --remote-wait-silent
+else
+    set -x EDITOR nvim
+end
+set -x PATH $PATH $HOME/.local/bin $HOME/.local/android-sdk/platform-tools /usr/share/git/git-jump
 set -x GCC_COLORS 'error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 set -x TIMEFMT '\n\n%U user, %S system, %E elapsed, %P CPU (%X text, %D data, %M max)k\n%I inputs, %O outputs (%F major, %R minor) pagefaults, %W swaps'
@@ -22,5 +26,5 @@ set __fish_git_prompt_showcolorhints            y
 set __fish_git_prompt_color_prefix  yellow
 set __fish_git_prompt_color_suffix  yellow
 
-keychain -Q --quiet
-. ~/.keychain/(hostname)-fish{,-gpg}
+# keychain -Q --quiet
+# . ~/.keychain/(hostname)-fish{,-gpg}

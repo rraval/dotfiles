@@ -2,20 +2,22 @@
 	name = Ronuk Raval
 	email = ronuk.raval@gmail.com
 [color]
-	diff = auto
-	status = auto
-	branch = auto
+    diff = auto
+    status = auto
+    branch = auto
 [core]
     whitespace = trailing-space,space-before-tab
+	excludesfile = ~/.gitignore
 [apply]
     whitespace = fix
 [alias]
     # working -> index
+    an = add -N .
     ap = add -p
     com = commit
     mcom = merge --no-ff
     acom = commit --amend
-    fixup = "!f() { git commit --fixup=$1 && git rebase -i $1^ --autosquash; }; f"
+    fcom = commit --fixup HEAD
 
     # information
     st = status -sb
@@ -25,35 +27,48 @@
     merged = branch --merged
     unmerged = branch --no-merged
     graph = log --graph --oneline --all --decorate
-    g = "!git log --branches --graph --decorate --oneline --not $(git show-ref --heads --hash | xargs git merge-base)"
+    g = "!git log --branches --graph --decorate --oneline --not $(git show-ref --heads --hash | xargs git merge-base --octopus)"
     xxx = grep 'FIXME XXX'
+
+    # index - index
+    ri = rebase --interactive
+    sq = rebase --interactive --autosquash
 
     # index -> working
     b = branch
+    to = branch --set-upstream-to
+    tom = branch --set-upstream-to origin/master
     br = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:green)%(refname:short)%(color:reset): %(color:red)%(objectname:short)%(color:reset) %(contents:subject) %(color:yellow)(%(authorname) %(committerdate:relative))%(color:reset)'
     co = checkout
+    cob = "!git checkout -b $1 origin/master #"
+    cx = cherry-pick -x
     fliptable = "!echo '(╯°□°）╯︵ ┻━┻'; git reset --hard HEAD"
     flipup = "!echo '┬─┬ ノ( ゜-゜ノ)'; git reset --hard '@{u}'"
 
     # dealing with others
-    up = "!git fetch && git rebase -p"
+    up = pull
     cont = rebase --continue
+    todo = rebase --edit-todo
     ff = merge --ff-only
 
-    # miscellaneous
-    desc = "!git config branch.$(git symbolic-ref --short HEAD).description"
-    edesc = branch --edit-description
-    j = jump
-    subtree = subtree.sh
+    # Create a branch for landing by checking out the commit 1 ahead of master
+    land = "!git rebase origin/master && git checkout -b land $(git rev-list --reverse HEAD '^origin/master' | head -n1)"
+[branch]
+    autoSetupMerge = always
 [merge]
 	tool = splice
 	conflictstyle = diff3
 [push]
 	default = simple
+[pull]
+    rebase = interactive
+[rebase]
+    stat = true
+    missingCommitsCheck = warn
 [mergetool]
 	keepBackup = false
 [mergetool "splice"]
-    cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
+    cmd = "nvim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
     trustExitCode = true
 [rebase]
     autosquash = true

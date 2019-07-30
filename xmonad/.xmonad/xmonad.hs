@@ -15,7 +15,7 @@ import XMonad.Hooks.ICCCMFocus
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
-import XMonad.Layout.Fullscreen
+import XMonad.Layout.Maximize
 import XMonad.Layout.NoBorders
 import XMonad.Util.EZConfig(additionalKeys)
 
@@ -39,11 +39,14 @@ main = do
                 ]
             <+> manageHook defaultConfig
         , keys = \c -> keys' c `M.union` keys xfceConfig c
-        , layoutHook = (smartBorders $ layoutHook xfceConfig) ||| (noBorders $ fullscreenFull Full)
+        , layoutHook = maximizeWithPadding 0 layout'
         , logHook = do
             logHook xfceConfig
             dynamicLogWithPP (prettyPrinter dbus)
         }
+
+layout' = avoidStruts $ smartBorders $ tallLayout ||| Mirror tallLayout
+tallLayout = Tall 1 (3/100) (1/2)
 
 keys' conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm, xK_q), kill)
@@ -59,6 +62,7 @@ keys' conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, xK_k), windowGo U True)
     , ((modm, xK_l), windowGo R True)
     -- shrink & expand master pane
+    , ((modm, xK_a), withFocused (sendMessage . maximizeRestore))
     , ((modm, xK_m), sendMessage Expand)
     , ((modm, xK_n), sendMessage Shrink)
     -- restore defaults
@@ -80,6 +84,7 @@ prettyPrinter dbus = defaultPP
     , ppUrgent   = pangoColor "#a40000" . pangoSanitize
     , ppLayout   = pangoColor "#4e9a06" . wrap "{" "}" . pangoSanitize
     , ppSep      = " "
+    , ppOrder    = \(workspaces:layout:title:_) -> [workspaces, title]
     }
 
 getWellKnownName :: D.Client -> IO ()

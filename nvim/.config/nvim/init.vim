@@ -1,17 +1,24 @@
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'CITguy/vim-coffee-script'
-Plug 'VundleVim/Vundle.vim'
+Plug 'altercation/vim-colors-solarized'
 Plug 'bkad/CamelCaseMotion'
-Plug 'flazz/vim-colorschemes'
-Plug 'google/vim-jsonnet'
 Plug 'gregsexton/MatchTag'
 Plug 'groenewege/vim-less'
+Plug 'kchmck/vim-coffee-script'
+Plug 'leafgarland/typescript-vim'
+Plug 'lfv89/vim-interestingwords'
 Plug 'mtscout6/vim-cjsx'
-Plug 'scrooloose/syntastic'
+Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 Plug 'sjl/splice.vim'
+Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-fugitive'
+Plug 'vim-python/python-syntax'
+Plug 'vim-syntastic/syntastic'
 Plug 'wincent/command-t', {'do': 'cd ruby/command-t/ext/command-t; and ruby extconf.rb; and make'}
 call plug#end()
+
+syntax enable
+set background=dark
+colorscheme solarized
 
 set softtabstop=4
 set tabstop=4
@@ -32,6 +39,10 @@ set cinoptions=>4,+8,(8,u0
 " because Y being yy is stupid
 map Y y$
 
+" editing commands
+" Ctrl+D for inserting the current buffer's directory for optin relative editing
+cnoremap <expr> <C-d> expand('%:h/') . '/'
+
 " kill any trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 
@@ -45,19 +56,12 @@ let g:loaded_netrwPlugin = 1
 " splice
 let g:splice_prefix = ","
 
-" syntastic
-let g:loaded_syntastic_jsonnet_jsonnet_checker = 1
-let g:jsonnet_fmt_on_save = 0
-let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-let g:syntastic_mode_map={ 'mode': 'active',
-                         \ 'active_filetypes': ['python', 'coffee'],
-                         \ 'passive_filetypes': ['latex'] }
-
 " camel case motion
 call camelcasemotion#CreateMotionMappings(',')
 
 " quickfix
-nnoremap <Leader>w :terminal<CR>
+" automatically put the quickfix window as a fully expanded bottom most split
+autocmd FileType qf wincmd J
 nnoremap <C-J> :cn<CR>
 nnoremap <C-K> :cp<CR>
 
@@ -65,15 +69,29 @@ nnoremap <C-K> :cp<CR>
 let g:CommandTFileScanner = 'git'
 
 " terminal
-autocmd TermOpen * set bufhidden=hide
+nnoremap <Leader>w :terminal<CR>
+autocmd BufEnter term://* startinsert
 tnoremap <Esc> <C-\><C-n>
-tnoremap <A-w> <C-\><C-n><C-w>c
 tnoremap <A-h> <C-\><C-n><C-w>h
 tnoremap <A-j> <C-\><C-n><C-w>j
 tnoremap <A-k> <C-\><C-n><C-w>k
 tnoremap <A-l> <C-\><C-n><C-w>l
-nnoremap <A-w> <C-w>c
 nnoremap <A-h> <C-w>h
 nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
+
+" insert the HEAD commit message
+nnoremap <Leader>g :read !git show --pretty='format:\%s\%n\%n\%b' -s<CR>
+
+" prevent nested nvim's
+if has('nvim')
+  let $VISUAL = 'nvr -cc split --remote-wait'
+endif
+
+" syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 2
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers = []
