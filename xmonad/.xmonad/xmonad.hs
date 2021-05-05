@@ -69,9 +69,9 @@ keys' conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, xK_p), spawn "xfce4-popup-whiskermenu")
     , ((modm, xK_o), spawn "zeal")
     -- media keys
-    , ((modm, xK_bracketright), spawn "dbus-send --session --type=method_call --dest=org.mpris.MediaPlayer2.google-play-music-desktop-player /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next")
-    , ((modm, xK_bracketleft), spawn "dbus-send --session --type=method_call --dest=org.mpris.MediaPlayer2.google-play-music-desktop-player /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous")
-    , ((modm, xK_backslash), spawn "dbus-send --session --type=method_call --dest=org.mpris.MediaPlayer2.google-play-music-desktop-player /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause")
+    , ((modm, xK_bracketright), spawn "dbus-send --session --type=method_call --dest=org.mpris.MediaPlayer2.google_play_music_desktop_player /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next")
+    , ((modm, xK_bracketleft), spawn "dbus-send --session --type=method_call --dest=org.mpris.MediaPlayer2.google_play_music_desktop_player /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous")
+    , ((modm, xK_backslash), spawn "dbus-send --session --type=method_call --dest=org.mpris.MediaPlayer2.google_play_music_desktop_player /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause")
     ]
 
 prettyPrinter :: D.Client -> PP

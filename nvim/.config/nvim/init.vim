@@ -1,18 +1,16 @@
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'altercation/vim-colors-solarized'
 Plug 'bkad/CamelCaseMotion'
-Plug 'gregsexton/MatchTag'
 Plug 'groenewege/vim-less'
 Plug 'kchmck/vim-coffee-script'
 Plug 'leafgarland/typescript-vim'
 Plug 'lfv89/vim-interestingwords'
+Plug 'mhinz/vim-startify'
 Plug 'mtscout6/vim-cjsx'
-Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'sjl/splice.vim'
 Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-fugitive'
-Plug 'vim-python/python-syntax'
-Plug 'vim-syntastic/syntastic'
 Plug 'wincent/command-t', {'do': 'cd ruby/command-t/ext/command-t; and ruby extconf.rb; and make'}
 call plug#end()
 
@@ -35,6 +33,9 @@ set sidescroll=10
 set showmatch
 set showmode
 set cinoptions=>4,+8,(8,u0
+
+" stop autoindenting things as I type
+autocmd FileType python setlocal indentkeys-=<:>
 
 " because Y being yy is stupid
 map Y y$
@@ -81,17 +82,25 @@ nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 
-" insert the HEAD commit message
-nnoremap <Leader>g :read !git show --pretty='format:\%s\%n\%n\%b' -s<CR>
+" session management
+let g:startify_disable_at_vimenter = 1
+nnoremap <Leader>s :SSave! default<CR>:SClose<CR>
+nnoremap <Leader>a :SLoad default<CR>
+
+" arc
+nnoremap <Leader>z :cexpr system("arc lint --output=compiler")<CR>
 
 " prevent nested nvim's
 if has('nvim')
   let $VISUAL = 'nvr -cc split --remote-wait'
 endif
 
-" syntastic
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 2
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers = []
+" firenvim, firefox integration
+let g:firenvim_config = {
+    \ 'localSettings': {
+        \ '.*': {
+            \ 'priority': 0,
+            \ 'takeover': 'never',
+        \ },
+    \ }
+\ }

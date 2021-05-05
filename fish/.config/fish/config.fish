@@ -3,10 +3,10 @@ if [ -n "$NVIM_LISTEN_ADDRESS" ]
 else
     set -x EDITOR nvim
 end
-set -x PATH $PATH $HOME/.local/bin $HOME/.local/android-sdk/platform-tools /usr/share/git/git-jump
+set -x PATH $PATH $HOME/.local/bin $HOME/.local/android-sdk/platform-tools /usr/share/git/git-jump (ruby -e 'print Gem.user_dir')/bin
 set -x GCC_COLORS 'error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-set -x TIMEFMT '\n\n%U user, %S system, %E elapsed, %P CPU (%X text, %D data, %M max)k\n%I inputs, %O outputs (%F major, %R minor) pagefaults, %W swaps'
+set -x TIME '\n\n%U user, %S system, %E elapsed, %P CPU (%X text, %D data, %M max)k\n%I inputs, %O outputs (%F major, %R minor) pagefaults, %W swaps'
 set -x PYTHONDONTWRITEBYTECODE 1
 
 set __fish_prompt_root      (set_color red)

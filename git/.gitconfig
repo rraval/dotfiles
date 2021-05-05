@@ -46,7 +46,7 @@
     flipup = "!echo '┬─┬ ノ( ゜-゜ノ)'; git reset --hard '@{u}'"
 
     # dealing with others
-    up = pull
+    up = pull --rebase=merges
     cont = rebase --continue
     todo = rebase --edit-todo
     ff = merge --ff-only
@@ -60,8 +60,6 @@
 	conflictstyle = diff3
 [push]
 	default = simple
-[pull]
-    rebase = interactive
 [rebase]
     stat = true
     missingCommitsCheck = warn
